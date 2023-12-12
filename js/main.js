@@ -1,32 +1,16 @@
-const searchEl = document.querySelector('.search');
-const serachInpuEl =  searchEl.querySelector('input');
-
-searchEl.addEventListener('click', function(){
-  serachInpuEl.focus();
-});
-
-serachInpuEl.addEventListener('focus', function(){
-  searchEl.classList.add('focused');
-  serachInpuEl.setAttribute('placeholder', '통합검색');
-});
-
-serachInpuEl.addEventListener('blur', function(){
-  searchEl.classList.remove('focused');
-  serachInpuEl.setAttribute('placeholder', '');
-});
 
 const badgeEl = document.querySelector('header .badges');
 const toTopEl = document.querySelector('#to-top');
-toTopEl.addEventListener('click', function(){
+toTopEl.addEventListener('click', function () {
   gsap.to(window, .7, {
     scrollTo: 0
   });
 });
 
 
-window.addEventListener('scroll', _.throttle(function(){
+window.addEventListener('scroll', _.throttle(function () {
   // console.log(window.scrollY);
-  if(window.scrollY > 500){
+  if (window.scrollY > 500) {
     gsap.to(badgeEl, .6, {
       opacity: 0,
       display: 'none'
@@ -34,7 +18,7 @@ window.addEventListener('scroll', _.throttle(function(){
     gsap.to(toTopEl, .2, {
       x: 0
     });
-  }else{
+  } else {
     gsap.to(badgeEl, .6, {
       opacity: 1,
       display: 'block'
@@ -48,11 +32,11 @@ window.addEventListener('scroll', _.throttle(function(){
 
 
 const fadeEls = document.querySelectorAll('.visual .fade-in');
-fadeEls.forEach(function(fadeEl, index){
+fadeEls.forEach(function (fadeEl, index) {
   gsap.to(fadeEl, 1, {
     delay: (index + 1) * .7,
     opacity: 1
-    
+
   });
 });
 
@@ -68,10 +52,10 @@ new Swiper('.promotion .swiper', {
   spaceBetween: 10,
   centeredSlides: true,
   loop: true,
-  autoplay:{
+  autoplay: {
     delay: 5000
   },
-  pagination:{
+  pagination: {
     el: '.promotion .swiper-pagination',
     clickable: true
   },
@@ -83,10 +67,10 @@ new Swiper('.promotion .swiper', {
 
 new Swiper('.awards .swiper', {
   direction: 'horizontal',
-  autoplay:{
+  autoplay: {
     delay: 5000
   },
-  loop: true, 
+  loop: true,
   spaceBetween: 30,
   slidesPerView: 5,
   navigation: {
@@ -108,18 +92,18 @@ promotionToggleBtn.addEventListener('click', function () {
   // 요소를 숨겨야 하면,
   if (isHidePromotion) {
     promotionEl.classList.add('hide')
-  // 요소가 보여야 하면,
+    // 요소가 보여야 하면,
   } else {
     promotionEl.classList.remove('hide')
   }
 })
 
 
-function random(min, max){
+function random(min, max) {
   return parseFloat((Math.random() * (max - min) + min).toFixed(2))
 }
 
-function floatingObject(selector, delay, size){
+function floatingObject(selector, delay, size) {
   gsap.to(selector, random(1.5, 2.5), {
     y: size,
     repeat: -1,
@@ -149,6 +133,3 @@ spyEls.forEach(function (spyEl) {
     .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
     .addTo(new ScrollMagic.Controller()) // 컨트롤러에 장면을 할당(필수!)
 })
-
-const thisYear = document.querySelector('.this-year');
-thisYear.textContent = new Date().getFullYear();
